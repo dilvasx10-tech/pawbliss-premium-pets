@@ -62,13 +62,17 @@ const ProductPage = () => {
           {/* Images */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="aspect-square bg-secondary rounded-2xl overflow-hidden mb-4">
-              <img src={getProductImage(product.slug)} alt={product.name} width={800} height={800} className="w-full h-full object-cover" />
+              <img src={gallery[activeImage]} alt={product.name} width={800} height={800} className="w-full h-full object-cover" />
             </div>
-            <div className="grid grid-cols-4 gap-3">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="aspect-square bg-secondary rounded-xl overflow-hidden cursor-pointer hover:ring-2 ring-primary transition-all">
-                  <img src={getProductImage(product.slug)} alt={`${product.name} view ${i + 1}`} loading="lazy" width={200} height={200} className="w-full h-full object-cover" />
-                </div>
+            <div className="grid grid-cols-5 gap-3">
+              {gallery.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImage(i)}
+                  className={`aspect-square bg-secondary rounded-xl overflow-hidden cursor-pointer transition-all ${activeImage === i ? 'ring-2 ring-primary' : 'hover:ring-2 ring-primary/40'}`}
+                >
+                  <img src={img} alt={`${product.name} view ${i + 1}`} loading="lazy" width={200} height={200} className="w-full h-full object-cover" />
+                </button>
               ))}
             </div>
           </motion.div>
