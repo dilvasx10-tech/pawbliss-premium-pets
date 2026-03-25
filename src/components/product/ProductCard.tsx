@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Product } from '@/data/products';
+import { getProductImage } from '@/data/productImages';
 import { useCart } from '@/context/CartContext';
 import { ShoppingBag } from 'lucide-react';
 
