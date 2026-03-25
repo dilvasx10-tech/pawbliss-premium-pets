@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Heart, Shield, Leaf } from 'lucide-react';
+import founderImg from '@/assets/founder.jpg';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
