@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Shield, Truck, RotateCcw, CheckCircle, X as XIcon, ChevronUp } from 'lucide-react';
 import { getProductBySlug, products, reviews } from '@/data/products';
-import { getProductImage } from '@/data/productImages';
+import { getProductImage, getProductGallery } from '@/data/productImages';
 import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/product/ProductCard';
 
