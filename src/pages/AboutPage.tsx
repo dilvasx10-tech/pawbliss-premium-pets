@@ -27,8 +27,8 @@ const AboutPage = () => (
     <section className="bg-secondary/50 py-16 sm:py-24">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-          <div className="aspect-[4/5] bg-secondary rounded-3xl flex items-center justify-center text-[80px]">
-            👩‍🔬
+          <div className="aspect-[4/5] bg-secondary rounded-3xl overflow-hidden">
+            <img src={founderImg} alt="PawBliss founder with her cat" className="w-full h-full object-cover" loading="lazy" width={1024} height={1280} />
           </div>
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3">The founder</p>

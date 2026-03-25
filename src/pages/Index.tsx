@@ -42,8 +42,8 @@ const HeroSection = () => (
           </motion.div>
         </motion.div>
         <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }} className="relative">
-          <div className="aspect-[4/5] bg-secondary rounded-3xl flex items-center justify-center overflow-hidden">
-            <span className="text-[120px]">🐕</span>
+          <div className="aspect-[4/5] bg-secondary rounded-3xl overflow-hidden">
+            <img src={heroImg} alt="Happy golden retriever relaxing at home" className="w-full h-full object-cover" width={1024} height={1280} />
           </div>
           <div className="absolute -bottom-4 -left-4 bg-card p-4 rounded-2xl shadow-lg border border-border">
             <div className="flex items-center gap-2">
