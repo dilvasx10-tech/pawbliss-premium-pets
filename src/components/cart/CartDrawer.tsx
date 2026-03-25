@@ -1,5 +1,6 @@
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
+import { getProductImage } from '@/data/productImages';
 
 const CartDrawer = () => {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, subtotal, amountToFreeShipping, freeShippingThreshold } = useCart();
@@ -46,8 +47,8 @@ const CartDrawer = () => {
             <div className="space-y-4">
               {items.map(item => (
                 <div key={item.product.id} className="flex gap-4 p-3 bg-card rounded-xl">
-                  <div className="w-20 h-20 bg-secondary rounded-lg flex items-center justify-center text-2xl shrink-0">
-                    🐾
+                  <div className="w-20 h-20 bg-secondary rounded-lg overflow-hidden shrink-0">
+                    <img src={getProductImage(item.product.slug)} alt={item.product.name} loading="lazy" width={80} height={80} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-semibold truncate">{item.product.name}</h3>

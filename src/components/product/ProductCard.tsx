@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Product } from '@/data/products';
+import { getProductImage } from '@/data/productImages';
 import { useCart } from '@/context/CartContext';
 import { ShoppingBag } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="group bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
       <Link to={`/product/${product.slug}`} className="block">
         <div className="relative aspect-square bg-secondary flex items-center justify-center overflow-hidden">
-          <span className="text-6xl group-hover:scale-110 transition-transform duration-500">🐾</span>
+          <img src={getProductImage(product.slug)} alt={product.name} loading="lazy" width={800} height={800} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
           {product.badge && (
             <span className={`absolute top-3 left-3 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
               product.badge === 'Bestseller' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
