@@ -235,7 +235,9 @@ const BundleSection = () => {
             </motion.div>
             <motion.div variants={fadeInUp} className="grid grid-cols-3 gap-3">
               {products.map(p => (
-                <div key={p.id} className="aspect-square bg-secondary rounded-xl flex items-center justify-center text-3xl">🐾</div>
+                <div key={p.id} className="aspect-square bg-secondary rounded-xl overflow-hidden">
+                  <img src={getProductImage(p.slug)} alt={p.name} loading="lazy" width={400} height={400} className="w-full h-full object-cover" />
+                </div>
               ))}
             </motion.div>
           </div>
