@@ -13,6 +13,8 @@ const ProductPage = () => {
   const { addItem } = useCart();
   const [selectedVariant, setSelectedVariant] = useState('');
   const [quantity, setQuantity] = useState(1);
+  const [activeImage, setActiveImage] = useState(0);
+  const gallery = getProductGallery(slug || '');
   const [showStickyBar, setShowStickyBar] = useState(false);
 
   useEffect(() => {
