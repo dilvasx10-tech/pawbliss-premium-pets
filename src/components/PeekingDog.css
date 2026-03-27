@@ -1,8 +1,8 @@
 .peeking-dog-wrapper {
   position: fixed;
-  top: 36px; /* below announcement bar */
+  top: 80px; /* sits at the bottom edge of navbar */
   left: 160px;
-  z-index: 49; /* just below navbar (50) */
+  z-index: 45; /* below navbar (50), above content */
   pointer-events: none;
   transition: left 0.3s ease;
 }
@@ -12,7 +12,7 @@
   .peeking-dog-wrapper {
     left: auto;
     right: 70px;
-    top: 36px;
+    top: 72px;
     transform: scale(0.6);
     transform-origin: top right;
   }
@@ -23,20 +23,22 @@
   pointer-events: auto;
   cursor: pointer;
   animation: dog-peek 3s ease-in-out infinite;
+  /* Move dog up so head peeks above its container top */
+  margin-top: -60px;
 }
 
 .dog-svg {
   width: 100px;
   height: 84px;
   display: block;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.12));
   overflow: visible;
 }
 
 /* ---- Peek bob animation ---- */
 @keyframes dog-peek {
-  0%, 100% { transform: translateY(16px); }
-  50% { transform: translateY(8px); }
+  0%, 100% { transform: translateY(8px); }
+  50% { transform: translateY(0px); }
 }
 
 /* ---- Eye pupils look around ---- */
@@ -75,21 +77,21 @@
 /* ---- Speech bubble ---- */
 .speech-bubble {
   position: absolute;
-  top: 2px;
-  left: 90px;
+  top: 8px;
+  left: 95px;
   background: white;
   color: #2D4A3E;
   font-family: 'Georgia', serif;
   font-size: 13px;
   font-weight: 700;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 14px;
   white-space: nowrap;
   opacity: 0;
   transform: scale(0.7) translateY(6px);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
   z-index: 2;
 }
 
@@ -109,7 +111,7 @@
 }
 
 @keyframes dog-peek-hover {
-  to { transform: translateY(-4px); }
+  to { transform: translateY(-14px); }
 }
 
 .peeking-dog:hover .dog-tail {
