@@ -17,7 +17,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="relative aspect-square bg-secondary flex items-center justify-center overflow-hidden">
           <img src={getProductImage(product.slug)} alt={product.name} loading="lazy" width={800} height={800} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
           {product.badge && (
-            <span className={`absolute top-3 left-3 text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full ${
+            <span className={`absolute top-2 left-2 sm:top-3 sm:left-3 text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider px-2 sm:px-3 py-1 rounded-full ${
               product.badge === 'Bestseller' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'
             }`}>
               {product.badge}
@@ -25,18 +25,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
           )}
         </div>
       </Link>
-      <div className="p-5">
+      <div className="p-3 sm:p-5">
         <Link to={`/product/${product.slug}`}>
-          <h3 className="font-serif font-bold text-base mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-3 line-clamp-2">{product.tagline}</p>
+          <h3 className="font-serif font-bold text-sm sm:text-base mb-1 group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-2 sm:mb-3 line-clamp-2">{product.tagline}</p>
         </Link>
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-primary">${product.price}</span>
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-base sm:text-lg font-bold text-primary">${product.price}</span>
           <button
             onClick={() => addItem(product)}
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+            className="flex items-center gap-1 sm:gap-2 bg-primary text-primary-foreground px-3 sm:px-4 py-2 min-h-[40px] sm:min-h-0 rounded-lg text-xs sm:text-sm font-medium hover:opacity-90 transition-opacity"
           >
-            <ShoppingBag className="w-4 h-4" />
+            <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             Add
           </button>
         </div>
