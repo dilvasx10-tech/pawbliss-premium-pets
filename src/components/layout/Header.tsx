@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useState } from 'react';
-import PeekingDog from '@/components/PeekingDog';
+
 
 const AnnouncementBar = ({ onDismiss }: { onDismiss: () => void }) => (
   <div className="bg-[#2D4A3E] text-[#F5F0E8] text-center py-2 px-4 relative" style={{ fontSize: '13px' }}>
@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <>
       {showAnnouncement && <AnnouncementBar onDismiss={() => setShowAnnouncement(false)} />}
-      <PeekingDog />
+      
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container flex items-center justify-between h-14 sm:h-20">
           <Link to="/" className="flex items-center gap-2">
