@@ -19,7 +19,7 @@ const AnnouncementBar = ({ onDismiss }: { onDismiss: () => void }) => (
   </div>
 );
 
-const Header = () => {
+const Header = () => { // walking dog version
   const { totalItems, setIsOpen } = useCart();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showAnnouncement, setShowAnnouncement] = useState(true);
