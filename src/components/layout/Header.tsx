@@ -33,7 +33,7 @@ const Header = () => {
   return (
     <>
       {showAnnouncement && <AnnouncementBar onDismiss={() => setShowAnnouncement(false)} />}
-      <PeekingDog />
+      
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
         <div className="container flex items-center justify-between h-14 sm:h-20">
           <Link to="/" className="flex items-center gap-2">
