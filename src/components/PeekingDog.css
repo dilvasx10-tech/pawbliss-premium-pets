@@ -2,7 +2,7 @@
   position: fixed;
   top: 56px;
   left: 170px;
-  z-index: 51; /* Above navbar so speech bubble + hover state shows */
+  z-index: 51;
   pointer-events: none;
 }
 
@@ -21,6 +21,8 @@
   pointer-events: auto;
   cursor: pointer;
   animation: dog-peek 3s ease-in-out infinite;
+  clip-path: inset(38% 0 0 0);
+  transition: clip-path 0.4s ease;
 }
 
 .dog-svg {
@@ -29,29 +31,12 @@
   display: block;
   filter: drop-shadow(0 3px 8px rgba(0,0,0,0.15));
   overflow: visible;
-  /* Clip the top portion so only paws + bottom of face show in default state.
-     The navbar visually covers the head. We simulate this with clip-path. */
-}
-
-/* Use a wrapper to clip the top half, simulating "behind navbar" */
-.peeking-dog {
-  clip-path: inset(40% 0 0 0);
-  transition: clip-path 0.4s ease;
-}
-
-.peeking-dog:hover {
-  clip-path: inset(0% 0 0 0);
-  animation: dog-peek-hover 0.4s ease forwards;
 }
 
 /* ---- Peek bob animation ---- */
 @keyframes dog-peek {
   0%, 100% { transform: translateY(2px); }
   50% { transform: translateY(-3px); }
-}
-
-@keyframes dog-peek-hover {
-  to { transform: translateY(-8px); }
 }
 
 /* ---- Eye pupils look around ---- */
@@ -87,21 +72,16 @@
   transition: opacity 0.3s ease;
 }
 
-.peeking-dog:hover .dog-tail {
-  opacity: 1;
-  animation: tail-wag 0.3s ease-in-out infinite alternate;
-}
-
-@keyframes tail-wag {
-  0% { transform: rotate(-15deg); }
-  100% { transform: rotate(15deg); }
-}
-
-/* ---- Speech bubble ---- */
-.speech-bubble {
+/* ---- Speech bubble (outside clip-path) ---- */
+.speech-bubble-anchor {
   position: absolute;
   top: 10px;
   left: 105px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.speech-bubble {
   background: white;
   color: #2D4A3E;
   font-family: 'Georgia', serif;
@@ -113,9 +93,7 @@
   opacity: 0;
   transform: scale(0.7) translateY(6px);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  pointer-events: none;
   box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-  z-index: 2;
 }
 
 .speech-bubble::after {
@@ -128,7 +106,31 @@
   border-right-color: white;
 }
 
-.peeking-dog:hover .speech-bubble {
+/* ---- Hover on the whole wrapper ---- */
+.peeking-dog-wrapper:hover {
+  pointer-events: auto;
+}
+
+.peeking-dog-wrapper:hover .peeking-dog {
+  clip-path: inset(0% 0 0 0);
+  animation: dog-peek-hover 0.4s ease forwards;
+}
+
+@keyframes dog-peek-hover {
+  to { transform: translateY(-8px); }
+}
+
+.peeking-dog-wrapper:hover .dog-tail {
+  opacity: 1;
+  animation: tail-wag 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes tail-wag {
+  0% { transform: rotate(-15deg); }
+  100% { transform: rotate(15deg); }
+}
+
+.peeking-dog-wrapper:hover .speech-bubble {
   opacity: 1;
   transform: scale(1) translateY(0);
 }
