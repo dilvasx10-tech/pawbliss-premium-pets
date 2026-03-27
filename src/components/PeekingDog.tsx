@@ -2,10 +2,12 @@ import './PeekingDog.css';
 
 const PeekingDog = () => (
   <div className="peeking-dog-wrapper" aria-hidden="true">
-    <div className="peeking-dog">
-      {/* Speech bubble */}
+    {/* Speech bubble outside clip-path container */}
+    <div className="speech-bubble-anchor">
       <div className="speech-bubble">Woof! 🐾</div>
+    </div>
 
+    <div className="peeking-dog">
       <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg" className="dog-svg">
         {/* Tail (visible on hover) */}
         <g className="dog-tail">
@@ -60,11 +62,9 @@ const PeekingDog = () => (
         <g className="dog-paw">
           <ellipse cx="45" cy="82" rx="14" ry="7" fill="#C8860A" />
           <ellipse cx="45" cy="82" rx="11" ry="5" fill="#D4A045" />
-          {/* Toes */}
           <ellipse className="dog-toe" cx="36" cy="79" rx="4" ry="5" fill="#C8860A" stroke="#A06B08" strokeWidth="0.8" />
           <ellipse className="dog-toe" cx="43" cy="77" rx="4" ry="5.5" fill="#C8860A" stroke="#A06B08" strokeWidth="0.8" />
           <ellipse className="dog-toe" cx="50" cy="78" rx="4" ry="5" fill="#C8860A" stroke="#A06B08" strokeWidth="0.8" />
-          {/* Toe pads */}
           <circle cx="36" cy="77" r="2" fill="#E8C068" />
           <circle cx="43" cy="75" r="2" fill="#E8C068" />
           <circle cx="50" cy="76" r="2" fill="#E8C068" />
