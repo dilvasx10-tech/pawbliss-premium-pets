@@ -7,7 +7,7 @@ import { CartProvider } from "@/context/CartContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/cart/CartDrawer";
-import WalkingDog from "@/components/WalkingDog";
+
 import Index from "./pages/Index";
 import ProductPage from "./pages/ProductPage";
 import CollectionsPage from "./pages/CollectionsPage";
@@ -37,7 +37,7 @@ const App = () => (
             </Routes>
           </main>
           <Footer />
-          <WalkingDog />
+          
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>
