@@ -37,7 +37,7 @@ const App = () => (
             </Routes>
           </main>
           <Footer />
-          <WalkingDog />
+          
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>
