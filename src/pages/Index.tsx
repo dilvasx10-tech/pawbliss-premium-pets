@@ -108,24 +108,27 @@ const ProblemsSection = () => (
 );
 
 // Featured Products
-const FeaturedProducts = () => (
-  <section className="py-16 sm:py-28 bg-secondary/50">
-    <div className="container">
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-12 sm:mb-16">
-        <motion.p variants={fadeInUp} className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3">The collection</motion.p>
-        <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl font-serif font-bold mb-3">The PawBliss Collection</motion.h2>
-        <motion.p variants={fadeInUp} className="text-muted-foreground">Six products. Every pet problem solved.</motion.p>
-      </motion.div>
-      <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {products.map(p => (
-          <motion.div key={p.id} variants={fadeInUp}>
-            <ProductCard product={p} />
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  </section>
-);
+const FeaturedProducts = () => {
+  const { cjProducts, isLoading } = useCJProducts();
+  return (
+    <section className="py-16 sm:py-28 bg-secondary/50">
+      <div className="container">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="text-center mb-12 sm:mb-16">
+          <motion.p variants={fadeInUp} className="font-mono text-xs uppercase tracking-[0.2em] text-accent mb-3">The collection</motion.p>
+          <motion.h2 variants={fadeInUp} className="text-2xl sm:text-4xl font-serif font-bold mb-3">The PawBliss Collection</motion.h2>
+          <motion.p variants={fadeInUp} className="text-muted-foreground">Six products. Every pet problem solved.</motion.p>
+        </motion.div>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {products.map(p => (
+            <motion.div key={p.id} variants={fadeInUp}>
+              <ProductCard product={p} cjData={getCJProductBySlug(cjProducts, p.slug)} isLoading={isLoading} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 // How It Works
 const HowItWorks = () => (
