@@ -50,10 +50,6 @@ const App = () => (
       </CartProvider>
     </TooltipProvider>
   </QueryClientProvider>
-);
-      </CartProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+
 
 export default App;
