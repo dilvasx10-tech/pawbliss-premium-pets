@@ -26,6 +26,7 @@ const Header = () => { // walking dog version
 
   const navLinks = [
     { to: '/collections', label: 'Shop' },
+    { to: '/calm-kit', label: 'Calm Kit' },
     { to: '/about', label: 'About' },
     { to: '/faq', label: 'FAQ' },
   ];
