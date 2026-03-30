@@ -13,6 +13,7 @@ serve(async (req) => {
   }
 
   try {
+    const origin = req.headers.get("origin") || "https://pawbliss-premium-pets.lovable.app";
     const { items } = await req.json();
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
@@ -48,8 +49,8 @@ serve(async (req) => {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url: `${req.headers.get("origin")}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get("origin")}/calm-kit`,
+      success_url: `${origin}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/calm-kit`,
       shipping_address_collection: {
         allowed_countries: ["US", "CA", "GB", "AU"],
       },
