@@ -24,20 +24,26 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Header />
-          <CartDrawer />
-          <main className="min-h-screen">
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/product/:slug" element={<ProductPage />} />
-              <Route path="/collections" element={<CollectionsPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-          
+          <Routes>
+            <Route path="/calm-kit" element={<CalmKitLanding />} />
+            <Route path="*" element={
+              <>
+                <Header />
+                <CartDrawer />
+                <main className="min-h-screen">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/product/:slug" element={<ProductPage />} />
+                    <Route path="/collections" element={<CollectionsPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/faq" element={<FAQPage />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+                <Footer />
+              </>
+            } />
+          </Routes>
         </BrowserRouter>
       </CartProvider>
     </TooltipProvider>
