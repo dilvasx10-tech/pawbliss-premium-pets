@@ -91,8 +91,19 @@ const CartDrawer = () => {
               <span className="font-bold text-lg">${subtotal.toFixed(2)}</span>
             </div>
             <p className="text-xs text-muted-foreground text-center">Taxes and shipping calculated at checkout</p>
-            <button className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity">
-              Checkout — ${subtotal.toFixed(2)}
+            <button
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+              className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2"
+            >
+              {checkoutLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Processing…
+                </>
+              ) : (
+                <>Checkout — ${subtotal.toFixed(2)}</>
+              )}
             </button>
             <p className="text-xs text-center text-muted-foreground">🔒 Secure checkout • 30-day money back guarantee</p>
           </div>

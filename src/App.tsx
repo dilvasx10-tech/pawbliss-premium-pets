@@ -38,6 +38,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/calm-kit" element={<CalmKitLanding />} />
+            <Route path="/checkout-success" element={<CheckoutSuccess />} />
             <Route element={<StoreLayout />}>
               <Route path="/" element={<Index />} />
               <Route path="/product/:slug" element={<ProductPage />} />
