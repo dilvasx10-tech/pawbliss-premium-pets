@@ -13,8 +13,8 @@ import ProductPage from "./pages/ProductPage";
 import CollectionsPage from "./pages/CollectionsPage";
 import AboutPage from "./pages/AboutPage";
 import FAQPage from "./pages/FAQPage";
+import CalmKitLanding from "./pages/CalmKitLanding";
 import NotFound from "./pages/NotFound";
-
 const queryClient = new QueryClient();
 
 const App = () => (
