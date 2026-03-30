@@ -24,6 +24,7 @@ export const productImages: Record<string, string> = {
 
 export const productGallery: Record<string, string[]> = {
   'pure-flow-cat-fountain': [pureFlowFountain, pureFlowFountain2, pureFlowFountain3, pureFlowFountain4, pureFlowFountain5],
+  'shedaway-glove': [shedawayGlove, shedawayGlove2, shedawayGlove3, shedawayGlove4, shedawayGlove5],
 };
 
 export function getProductImage(slug: string): string {

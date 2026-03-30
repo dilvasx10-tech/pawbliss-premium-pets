@@ -73,7 +73,7 @@ const SolutionSection = () => {
 
   const gloveImages = gloveCJ?.productImageSet?.length
     ? gloveCJ.productImageSet
-    : [gloveFallback];
+    : [glove1, glove2, glove3, glove4, glove5];
 
   return (
     <section className="py-14 md:py-20" style={{ backgroundColor: '#fff' }}>

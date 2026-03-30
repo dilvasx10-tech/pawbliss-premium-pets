@@ -32,7 +32,7 @@ const HeroSection = () => {
     : [heroFallback];
 
   const lickMatThumb = lickMatCJ?.productImageSet?.[0] || lickMatFallback;
-  const gloveThumb = gloveCJ?.productImageSet?.[0] || gloveFallback;
+  const gloveThumb = gloveCJ?.productImageSet?.[0] || glove1;
 
   const prevHero = () => setHeroIdx(i => (i > 0 ? i - 1 : heroImages.length - 1));
   const nextHero = () => setHeroIdx(i => (i < heroImages.length - 1 ? i + 1 : 0));
