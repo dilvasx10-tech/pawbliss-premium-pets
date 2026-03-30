@@ -4,7 +4,11 @@ import CtaButton from './CtaButton';
 import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import { Skeleton } from '@/components/ui/skeleton';
 import lickMatFallback from '@/assets/lick-mat-fallback.jpg';
-import gloveFallback from '@/assets/glove-fallback.jpg';
+import glove1 from '@/assets/glove-1.jpg';
+import glove2 from '@/assets/glove-2.jpg';
+import glove3 from '@/assets/glove-3.jpg';
+import glove4 from '@/assets/glove-4.jpg';
+import glove5 from '@/assets/glove-5.jpg';
 
 const product1Bullets = [
   'Calms anxiety in under 60 seconds',
