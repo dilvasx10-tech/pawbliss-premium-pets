@@ -21,7 +21,6 @@ const queryClient = new QueryClient();
 const StoreLayout = () => (
   <>
     <Header />
-    <CartDrawer />
     <main className="min-h-screen">
       <Outlet />
     </main>
