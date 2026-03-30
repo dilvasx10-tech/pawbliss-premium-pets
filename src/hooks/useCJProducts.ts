@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export interface CJProduct {
+  slug: string;
   productNameEn: string;
   productImageSet: string[];
   sellPrice: number;
@@ -15,16 +16,6 @@ interface CJProductsState {
 
 const CJ_API_BASE = import.meta.env.VITE_CJ_API_URL || 'http://localhost:3001/api/cj';
 
-// Map CJ products to our product slugs by index order
-const SLUG_ORDER = [
-  'calm-lick-mat',
-  'pure-flow-cat-fountain',
-  'arctic-cool-mat',
-  'zen-grooming-hammock',
-  'shedaway-glove',
-  'iq-puzzle-feeder',
-];
-
 let cachedData: CJProduct[] | null = null;
 let fetchPromise: Promise<CJProduct[]> | null = null;
 
@@ -32,14 +23,34 @@ async function fetchCJProducts(): Promise<CJProduct[]> {
   if (cachedData) return cachedData;
   if (fetchPromise) return fetchPromise;
 
-  fetchPromise = fetch(`${CJ_API_BASE}/pawbliss-products`, { signal: AbortSignal.timeout(8000) })
+  fetchPromise = fetch(`${CJ_API_BASE}/pawbliss-products`, { signal: AbortSignal.timeout(15000) })
     .then(res => {
       if (!res.ok) throw new Error(`CJ API ${res.status}`);
       return res.json();
     })
-    .then((data: CJProduct[]) => {
-      cachedData = data;
-      return data;
+    .then((data) => {
+      // Server returns { fetchedAt, cachedUntil, count, products: [...] }
+      const raw: Array<{
+        slug: string;
+        productNameEn?: string;
+        productImages?: string[];
+        sellPrice?: number;
+        videoUrl?: string | null;
+        error?: string;
+      }> = data.products ?? data;
+
+      const mapped: CJProduct[] = raw
+        .filter(p => !p.error && p.productImages?.length)
+        .map(p => ({
+          slug: p.slug,
+          productNameEn: p.productNameEn ?? '',
+          productImageSet: p.productImages ?? [],
+          sellPrice: typeof p.sellPrice === 'number' ? p.sellPrice : parseFloat(String(p.sellPrice)) || 0,
+          videoUrl: p.videoUrl ?? null,
+        }));
+
+      cachedData = mapped;
+      return mapped;
     })
     .catch(err => {
       console.warn('CJ API unavailable, using static images:', err.message);
@@ -78,7 +89,5 @@ export function useCJProducts(): CJProductsState {
 
 /** Get CJ data for a specific product slug */
 export function getCJProductBySlug(cjProducts: CJProduct[], slug: string): CJProduct | undefined {
-  const index = SLUG_ORDER.indexOf(slug);
-  if (index === -1 || index >= cjProducts.length) return undefined;
-  return cjProducts[index];
+  return cjProducts.find(p => p.slug === slug);
 }
