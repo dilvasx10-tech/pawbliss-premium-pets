@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Star, Package, Gift, Truck, ChevronLeft, ChevronRight } from 'lucide-react';
 import CtaButton from './CtaButton';
 import CountdownTimer from './CountdownTimer';
-import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
-import { Skeleton } from '@/components/ui/skeleton';
 import lickmat1 from '@/assets/lickmat-1.jpg';
 import lickmat2 from '@/assets/lickmat-2.jpg';
 import lickmat3 from '@/assets/lickmat-3.jpg';
@@ -26,24 +24,21 @@ const valueItems = [
 ];
 
 const HeroSection = () => {
-  const { cjProducts, isLoading } = useCJProducts();
-  const lickMatCJ = getCJProductBySlug(cjProducts, 'calm-lick-mat');
-  const gloveCJ = getCJProductBySlug(cjProducts, 'shedaway-glove');
+  const lickMatImages = [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
+  const gloveImages = [glove1, glove2, glove3, glove4, glove5];
   const [heroIdx, setHeroIdx] = useState(0);
 
-  // Build hero images from CJ data or fallback
-  const heroImages = [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
+  const safeHeroIdx = ((heroIdx % lickMatImages.length) + lickMatImages.length) % lickMatImages.length;
+  const heroImage = lickMatImages[safeHeroIdx];
+  const lickMatThumb = lickMatImages[0];
+  const gloveThumb = gloveImages[0];
 
-  const lickMatThumb = lickmat1;
-  const gloveThumb = glove1;
-
-  const prevHero = () => setHeroIdx(i => (i > 0 ? i - 1 : heroImages.length - 1));
-  const nextHero = () => setHeroIdx(i => (i < heroImages.length - 1 ? i + 1 : 0));
+  const prevHero = () => setHeroIdx(i => (i > 0 ? i - 1 : lickMatImages.length - 1));
+  const nextHero = () => setHeroIdx(i => (i < lickMatImages.length - 1 ? i + 1 : 0));
 
   return (
     <section id="hero-section" className="max-w-6xl mx-auto px-4 py-8 md:py-14">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-        {/* Text */}
         <div className="order-2 md:order-1">
           <span className="inline-block text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: '#C8714A' }}>
             THE CALM PET STARTER KIT
@@ -100,36 +95,31 @@ const HeroSection = () => {
           <CtaButton />
         </div>
 
-        {/* Image with carousel */}
         <div className="order-1 md:order-2 relative">
-          {isLoading ? (
-            <Skeleton className="w-full rounded-2xl aspect-[4/5] md:aspect-[3/4]" />
-          ) : (
-            <>
-              <img
-                src={heroImages[heroIdx]}
-                alt="Happy calm dog ready for bath time"
-                className="w-full rounded-2xl object-cover aspect-[4/5] md:aspect-[3/4] shadow-lg"
-                loading="eager"
-              />
-              {heroImages.length > 1 && (
-                <>
-                  <button onClick={prevHero} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 transition-colors">
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button onClick={nextHero} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 transition-colors">
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                  <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-1.5">
-                    {heroImages.map((_, i) => (
-                      <button key={i} onClick={() => setHeroIdx(i)} className={`w-2 h-2 rounded-full transition-colors ${heroIdx === i ? 'bg-white' : 'bg-white/40'}`} />
-                    ))}
-                  </div>
-                </>
-              )}
-            </>
-          )}
-          {/* Product thumbnails */}
+          <>
+            <img
+              src={heroImage}
+              alt="Dog using fish-shaped lick mat"
+              className="w-full rounded-2xl object-cover aspect-[4/5] md:aspect-[3/4] shadow-lg"
+              loading="eager"
+            />
+            {lickMatImages.length > 1 && (
+              <>
+                <button onClick={prevHero} className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 transition-colors">
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button onClick={nextHero} className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full p-1.5 transition-colors">
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+                <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-1.5">
+                  {lickMatImages.map((_, i) => (
+                    <button key={i} onClick={() => setHeroIdx(i)} className={`w-2 h-2 rounded-full transition-colors ${safeHeroIdx === i ? 'bg-white' : 'bg-white/40'}`} />
+                  ))}
+                </div>
+              </>
+            )}
+          </>
+
           <div className="absolute bottom-4 left-4 right-4 flex gap-2">
             <div className="flex-1 rounded-xl overflow-hidden shadow-lg border-2 border-white">
               <img src={lickMatThumb} alt="Calm Lick Mat" className="w-full aspect-square object-cover" loading="eager" />
