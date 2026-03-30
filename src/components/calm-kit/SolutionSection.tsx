@@ -75,7 +75,7 @@ const SolutionSection = () => {
 
   const lickMatImages = lickMatCJ?.productImageSet?.length
     ? lickMatCJ.productImageSet
-    : [lickMatFallback];
+    : [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
 
   const gloveImages = gloveCJ?.productImageSet?.length
     ? gloveCJ.productImageSet

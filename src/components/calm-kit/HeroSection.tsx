@@ -34,9 +34,9 @@ const HeroSection = () => {
   // Build hero images from CJ data or fallback
   const heroImages = lickMatCJ?.productImageSet?.length
     ? lickMatCJ.productImageSet
-    : [heroFallback];
+    : [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
 
-  const lickMatThumb = lickMatCJ?.productImageSet?.[0] || lickMatFallback;
+  const lickMatThumb = lickMatCJ?.productImageSet?.[0] || lickmat1;
   const gloveThumb = gloveCJ?.productImageSet?.[0] || glove1;
 
   const prevHero = () => setHeroIdx(i => (i > 0 ? i - 1 : heroImages.length - 1));
