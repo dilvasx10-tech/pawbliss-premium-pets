@@ -7,6 +7,7 @@ import { getProductImage } from '@/data/productImages';
 import ProductCard from '@/components/product/ProductCard';
 import { products, bundles, reviews } from '@/data/products';
 import { useCart } from '@/context/CartContext';
+import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
