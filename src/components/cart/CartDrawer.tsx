@@ -1,6 +1,8 @@
-import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { X, Plus, Minus, ShoppingBag, Loader2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { getProductImage } from '@/data/productImages';
+import { useCheckout } from '@/hooks/useCheckout';
+import { toast } from '@/hooks/use-toast';
 
 const CartDrawer = () => {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, subtotal, amountToFreeShipping, freeShippingThreshold } = useCart();
