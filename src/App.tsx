@@ -14,6 +14,7 @@ import CollectionsPage from "./pages/CollectionsPage";
 import AboutPage from "./pages/AboutPage";
 import FAQPage from "./pages/FAQPage";
 import CalmKitLanding from "./pages/CalmKitLanding";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/calm-kit" element={<CalmKitLanding />} />
+            <Route path="/checkout-success" element={<CheckoutSuccess />} />
             <Route element={<StoreLayout />}>
               <Route path="/" element={<Index />} />
               <Route path="/product/:slug" element={<ProductPage />} />

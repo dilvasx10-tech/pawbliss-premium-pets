@@ -1,9 +1,20 @@
-import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
+import { X, Plus, Minus, ShoppingBag, Loader2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { getProductImage } from '@/data/productImages';
+import { useCheckout } from '@/hooks/useCheckout';
+import { toast } from '@/hooks/use-toast';
 
 const CartDrawer = () => {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, subtotal, amountToFreeShipping, freeShippingThreshold } = useCart();
+  const { checkout, isLoading: checkoutLoading } = useCheckout();
+
+  const handleCheckout = async () => {
+    try {
+      await checkout();
+    } catch {
+      toast({ title: 'Checkout failed', description: 'Please try again.', variant: 'destructive' });
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -80,8 +91,19 @@ const CartDrawer = () => {
               <span className="font-bold text-lg">${subtotal.toFixed(2)}</span>
             </div>
             <p className="text-xs text-muted-foreground text-center">Taxes and shipping calculated at checkout</p>
-            <button className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity">
-              Checkout — ${subtotal.toFixed(2)}
+            <button
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+              className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity disabled:opacity-60 flex items-center justify-center gap-2"
+            >
+              {checkoutLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Processing…
+                </>
+              ) : (
+                <>Checkout — ${subtotal.toFixed(2)}</>
+              )}
             </button>
             <p className="text-xs text-center text-muted-foreground">🔒 Secure checkout • 30-day money back guarantee</p>
           </div>
