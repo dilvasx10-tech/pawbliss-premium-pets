@@ -73,13 +73,9 @@ const SolutionSection = () => {
   const lickMatCJ = getCJProductBySlug(cjProducts, 'calm-lick-mat');
   const gloveCJ = getCJProductBySlug(cjProducts, 'shedaway-glove');
 
-  const lickMatImages = lickMatCJ?.productImageSet?.length
-    ? lickMatCJ.productImageSet
-    : [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
+  const lickMatImages = [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
 
-  const gloveImages = gloveCJ?.productImageSet?.length
-    ? gloveCJ.productImageSet
-    : [glove1, glove2, glove3, glove4, glove5];
+  const gloveImages = [glove1, glove2, glove3, glove4, glove5];
 
   return (
     <section className="py-14 md:py-20" style={{ backgroundColor: '#fff' }}>
