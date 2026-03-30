@@ -1,17 +1,18 @@
-import { Star, CheckCircle2 } from 'lucide-react';
+import { Star, Package, Gift, Truck } from 'lucide-react';
 import CtaButton from './CtaButton';
+import CountdownTimer from './CountdownTimer';
 
 const valueItems = [
-  { icon: '✅', label: 'PawBliss 4-Quadrant Calm Lick Mat', price: '$24.99' },
-  { icon: '✅', label: 'PawBliss ShedAway Deshedding Glove', price: '$18.99' },
-  { icon: '🎁', label: 'FREE: Calm Dog Blueprint PDF', price: '$27.00 value' },
-  { icon: '🎁', label: 'FREE: Lick Mat Recipe Book PDF', price: '$12.00 value' },
-  { icon: '✅', label: 'Free US Shipping', price: '$6.99 value' },
+  { icon: <Package className="w-4 h-4" style={{ color: '#2D4A3E' }} />, label: 'PawBliss 4-Quadrant Calm Lick Mat', price: '$24.99' },
+  { icon: <Package className="w-4 h-4" style={{ color: '#2D4A3E' }} />, label: 'PawBliss ShedAway Deshedding Glove', price: '$18.99' },
+  { icon: <Gift className="w-4 h-4" style={{ color: '#C8714A' }} />, label: 'FREE: Calm Dog Blueprint PDF', price: '$27.00 value' },
+  { icon: <Gift className="w-4 h-4" style={{ color: '#C8714A' }} />, label: 'FREE: Lick Mat Recipe Book PDF', price: '$12.00 value' },
+  { icon: <Truck className="w-4 h-4" style={{ color: '#2D4A3E' }} />, label: 'Free US Shipping', price: '$6.99 value' },
 ];
 
 const HeroSection = () => (
-  <section id="hero-section" className="max-w-6xl mx-auto px-4 py-10 md:py-16">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+  <section id="hero-section" className="max-w-6xl mx-auto px-4 py-8 md:py-14">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
       {/* Text */}
       <div className="order-2 md:order-1">
         <span className="inline-block text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: '#C8714A' }}>
@@ -36,22 +37,27 @@ const HeroSection = () => (
         </div>
 
         {/* Value Stack */}
-        <div className="rounded-xl p-5 mb-6 border-2" style={{ backgroundColor: '#F5F0E8', borderColor: '#2D4A3E' }}>
-          <p className="font-semibold text-xs tracking-widest uppercase mb-3" style={{ color: '#2D4A3E' }}>
-            WHAT YOU GET TODAY
-          </p>
-          <div className="space-y-2.5 text-sm">
+        <div className="rounded-xl overflow-hidden mb-6 border-2" style={{ borderColor: '#2D4A3E' }}>
+          <div className="px-5 py-3" style={{ backgroundColor: '#2D4A3E' }}>
+            <p className="font-semibold text-xs tracking-widest uppercase" style={{ color: '#FAFAF7' }}>
+              📦 WHAT YOU GET TODAY
+            </p>
+          </div>
+          <div className="p-5 space-y-3" style={{ backgroundColor: '#F5F0E8' }}>
             {valueItems.map(item => (
-              <div key={item.label} className="flex items-start justify-between gap-2">
-                <div className="flex items-start gap-2">
-                  <span>{item.icon}</span>
-                  <span>{item.label}</span>
+              <div key={item.label} className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: '#fff', border: '1px solid #e8e4dc' }}>
+                    {item.icon}
+                  </div>
+                  <span className="text-sm font-medium">{item.label}</span>
                 </div>
-                <span className="shrink-0 text-xs" style={{ color: '#888' }}>({item.price})</span>
+                <span className="shrink-0 text-xs font-medium" style={{ color: '#888' }}>({item.price})</span>
               </div>
             ))}
           </div>
-          <div className="border-t mt-4 pt-4" style={{ borderColor: '#2D4A3E33' }}>
+          <div className="px-5 py-4 border-t" style={{ backgroundColor: '#F5F0E8', borderColor: '#2D4A3E33' }}>
+            <CountdownTimer />
             <div className="flex justify-between items-center mb-1">
               <span className="text-sm" style={{ color: '#888' }}>Total Value:</span>
               <span className="text-sm line-through" style={{ color: '#999' }}>$89.97</span>
@@ -74,8 +80,24 @@ const HeroSection = () => (
           className="w-full rounded-2xl object-cover aspect-[4/5] md:aspect-[3/4] shadow-lg"
           loading="eager"
         />
-        <div className="absolute bottom-4 left-4 px-3 py-1.5 rounded-full text-xs font-semibold" style={{ backgroundColor: '#2D4A3E', color: '#FAFAF7' }}>
-          🎵 As Seen on TikTok
+        {/* Product thumbnails overlaying hero image */}
+        <div className="absolute bottom-4 left-4 right-4 flex gap-2">
+          <div className="flex-1 rounded-xl overflow-hidden shadow-lg border-2 border-white">
+            <img
+              src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=200"
+              alt="Calm Lick Mat"
+              className="w-full aspect-square object-cover"
+              loading="eager"
+            />
+          </div>
+          <div className="flex-1 rounded-xl overflow-hidden shadow-lg border-2 border-white">
+            <img
+              src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=200"
+              alt="ShedAway Deshedding Glove"
+              className="w-full aspect-square object-cover"
+              loading="eager"
+            />
+          </div>
         </div>
         <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-semibold" style={{ backgroundColor: '#C8714A', color: '#fff' }}>
           ⭐ #1 Rated Calm Kit

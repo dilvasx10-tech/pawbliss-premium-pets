@@ -37,24 +37,41 @@ const FAQSection = () => {
           Quick Answers
         </h2>
         <div className="space-y-3">
-          {faqs.map((f, i) => (
-            <div key={i} className="rounded-xl overflow-hidden" style={{ backgroundColor: '#fff', border: '1px solid #e8e4dc' }}>
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between p-5 text-left"
-              >
-                <span className="font-semibold text-sm pr-4">{f.q}</span>
-                <span className="text-lg font-bold shrink-0" style={{ color: '#2D4A3E' }}>
-                  {open === i ? '−' : '+'}
-                </span>
-              </button>
-              {open === i && (
-                <div className="px-5 pb-5">
-                  <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{f.a}</p>
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={i} className="rounded-xl overflow-hidden" style={{ backgroundColor: '#fff', border: '1px solid #e8e4dc' }}>
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between p-5 text-left cursor-pointer"
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-semibold text-sm pr-4">{f.q}</span>
+                  <span
+                    className="text-lg font-bold shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-transform duration-200"
+                    style={{
+                      backgroundColor: '#2D4A3E',
+                      color: '#FAFAF7',
+                      transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                    }}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  className="overflow-hidden transition-all duration-300 ease-in-out"
+                  style={{
+                    maxHeight: isOpen ? '200px' : '0px',
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                >
+                  <div className="px-5 pb-5">
+                    <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{f.a}</p>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

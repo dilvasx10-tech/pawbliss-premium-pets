@@ -1,4 +1,5 @@
 import { CheckCircle2 } from 'lucide-react';
+import CtaButton from './CtaButton';
 
 const product1Bullets = [
   'Calms anxiety in under 60 seconds',
@@ -99,7 +100,7 @@ const SolutionSection = () => (
         />
       </div>
 
-      {/* Free Bonuses */}
+      {/* Free Bonuses with 3D mockup style */}
       <div className="rounded-2xl p-8 md:p-12" style={{ backgroundColor: '#2D4A3E' }}>
         <div className="text-center mb-8">
           <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#FAFAF7' }}>
@@ -111,17 +112,36 @@ const SolutionSection = () => (
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {bonuses.map(b => (
-            <div key={b.title} className="rounded-xl p-6 border" style={{ backgroundColor: '#35574A', borderColor: '#4A6B5D' }}>
-              <span className="text-3xl mb-3 block">{b.icon}</span>
-              <h4 className="font-bold text-base mb-2" style={{ color: '#FAFAF7' }}>{b.title}</h4>
-              <p className="text-sm leading-relaxed mb-3" style={{ color: '#FAFAF7BB' }}>{b.desc}</p>
-              <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full" style={{ backgroundColor: '#2D4A3E', color: '#C8714A', border: '1px solid #C8714A' }}>
-                {b.value}
-              </span>
+            <div key={b.title} className="rounded-xl p-6 border flex gap-5" style={{ backgroundColor: '#35574A', borderColor: '#4A6B5D' }}>
+              {/* 3D Book Mockup */}
+              <div className="shrink-0 w-20 h-28 relative" style={{ perspective: '400px' }}>
+                <div
+                  className="w-full h-full rounded-md shadow-lg flex flex-col items-center justify-center text-center p-2"
+                  style={{
+                    backgroundColor: b.icon === '📘' ? '#C8714A' : '#2D4A3E',
+                    border: '2px solid rgba(250,250,247,0.2)',
+                    transform: 'rotateY(-10deg)',
+                    transformStyle: 'preserve-3d',
+                  }}
+                >
+                  <span className="text-2xl mb-1">{b.icon}</span>
+                  <span className="text-[8px] font-bold leading-tight" style={{ color: '#FAFAF7' }}>{b.title}</span>
+                  <span className="text-[6px] mt-0.5" style={{ color: '#FAFAF7AA' }}>PawBliss</span>
+                </div>
+              </div>
+              <div className="flex-1">
+                <h4 className="font-bold text-base mb-2" style={{ color: '#FAFAF7' }}>{b.title}</h4>
+                <p className="text-sm leading-relaxed mb-3" style={{ color: '#FAFAF7BB' }}>{b.desc}</p>
+                <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full" style={{ backgroundColor: '#2D4A3E', color: '#C8714A', border: '1px solid #C8714A' }}>
+                  {b.value}
+                </span>
+              </div>
             </div>
           ))}
         </div>
       </div>
+
+      <CtaButton className="max-w-md mx-auto mt-10" />
     </div>
   </section>
 );
