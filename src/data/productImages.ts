@@ -6,7 +6,11 @@ import pureFlowFountain4 from '@/assets/products/pure-flow-fountain-4.jpg';
 import pureFlowFountain5 from '@/assets/products/pure-flow-fountain-5.jpg';
 import arcticCoolMat from '@/assets/products/arctic-cool-mat.jpg';
 import zenGroomingHammock from '@/assets/products/zen-grooming-hammock.jpg';
-import shedawayGlove from '@/assets/products/shedaway-glove.jpg';
+import shedawayGlove from '@/assets/glove-1.jpg';
+import shedawayGlove2 from '@/assets/glove-2.jpg';
+import shedawayGlove3 from '@/assets/glove-3.jpg';
+import shedawayGlove4 from '@/assets/glove-4.jpg';
+import shedawayGlove5 from '@/assets/glove-5.jpg';
 import iqPuzzleFeeder from '@/assets/products/iq-puzzle-feeder.jpg';
 
 export const productImages: Record<string, string> = {
