@@ -1,21 +1,33 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Shield, Truck, RotateCcw, CheckCircle, X as XIcon, ChevronUp } from 'lucide-react';
+import { Star, Shield, Truck, RotateCcw, CheckCircle, X as XIcon, ChevronUp, Play } from 'lucide-react';
 import { getProductBySlug, products, reviews } from '@/data/products';
 import { getProductImage, getProductGallery } from '@/data/productImages';
 import { useCart } from '@/context/CartContext';
+import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import ProductCard from '@/components/product/ProductCard';
+import ImageGalleryModal from '@/components/product/ImageGalleryModal';
+import VideoModal from '@/components/product/VideoModal';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const product = getProductBySlug(slug || '');
   const { addItem } = useCart();
+  const { cjProducts, isLoading: cjLoading } = useCJProducts();
+  const cjData = getCJProductBySlug(cjProducts, slug || '');
+
   const [selectedVariant, setSelectedVariant] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
-  const gallery = getProductGallery(slug || '');
   const [showStickyBar, setShowStickyBar] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
+  // Build gallery from CJ data or fallback to static
+  const staticGallery = getProductGallery(slug || '');
+  const gallery = cjData?.productImageSet?.length ? cjData.productImageSet : staticGallery;
 
   useEffect(() => {
     if (product?.variant) setSelectedVariant(product.variant.options[0]);
@@ -61,20 +73,45 @@ const ProductPage = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Images */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <div className="aspect-square bg-secondary rounded-2xl overflow-hidden mb-4">
-              <img src={gallery[activeImage]} alt={product.name} width={800} height={800} className="w-full h-full object-cover" />
-            </div>
-            <div className="grid grid-cols-5 gap-3">
-              {gallery.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveImage(i)}
-                  className={`aspect-square bg-secondary rounded-xl overflow-hidden cursor-pointer transition-all ${activeImage === i ? 'ring-2 ring-primary' : 'hover:ring-2 ring-primary/40'}`}
+            {cjLoading ? (
+              <>
+                <Skeleton className="aspect-square w-full rounded-2xl mb-4" />
+                <div className="grid grid-cols-5 gap-3">
+                  {[...Array(5)].map((_, i) => <Skeleton key={i} className="aspect-square rounded-xl" />)}
+                </div>
+              </>
+            ) : (
+              <>
+                <div
+                  className="relative aspect-square bg-secondary rounded-2xl overflow-hidden mb-4 cursor-pointer"
+                  onClick={() => setShowGallery(true)}
                 >
-                  <img src={img} alt={`${product.name} view ${i + 1}`} loading="lazy" width={200} height={200} className="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
+                  <img src={gallery[activeImage]} alt={product.name} width={800} height={800} className="w-full h-full object-cover" />
+                  {cjData?.videoUrl && (
+                    <button
+                      onClick={e => { e.stopPropagation(); setShowVideo(true); }}
+                      className="absolute bottom-4 right-4 bg-black/60 hover:bg-black/80 text-white rounded-full w-12 h-12 flex items-center justify-center transition-colors"
+                    >
+                      <Play className="w-5 h-5 fill-white" />
+                    </button>
+                  )}
+                  {import.meta.env.DEV && cjData && (
+                    <span className="absolute top-3 right-3 bg-blue-600 text-white text-[9px] font-mono px-2 py-1 rounded">CJ</span>
+                  )}
+                </div>
+                <div className="grid grid-cols-5 gap-3">
+                  {gallery.slice(0, 5).map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImage(i)}
+                      className={`aspect-square bg-secondary rounded-xl overflow-hidden cursor-pointer transition-all ${activeImage === i ? 'ring-2 ring-primary' : 'hover:ring-2 ring-primary/40'}`}
+                    >
+                      <img src={img} alt={`${product.name} view ${i + 1}`} loading="lazy" width={200} height={200} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
           </motion.div>
 
           {/* Details */}
@@ -128,12 +165,10 @@ const ProductPage = () => {
               </div>
             </div>
 
-            {/* Low stock */}
             {product.stock < 15 && (
               <p className="text-sm text-accent font-medium mb-4">🔥 Only {product.stock} left in stock</p>
             )}
 
-            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <button onClick={handleAdd} className="flex-1 bg-primary text-primary-foreground py-4 rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity">
                 Add to Cart
@@ -143,7 +178,6 @@ const ProductPage = () => {
               </button>
             </div>
 
-            {/* Trust badges */}
             <div className="grid grid-cols-2 gap-3">
               {[
                 { icon: <Shield className="w-4 h-4" />, text: 'Secure Checkout' },
@@ -174,12 +208,8 @@ const ProductPage = () => {
             {product.comparisonFeatures.map((f, i) => (
               <div key={f} className={`grid grid-cols-3 text-sm ${i % 2 ? 'bg-secondary/50' : ''}`}>
                 <div className="p-4 font-medium">{f}</div>
-                <div className="p-4 text-center text-primary">
-                  <CheckCircle className="w-5 h-5 mx-auto" />
-                </div>
-                <div className="p-4 text-center text-muted-foreground">
-                  <XIcon className="w-5 h-5 mx-auto" />
-                </div>
+                <div className="p-4 text-center text-primary"><CheckCircle className="w-5 h-5 mx-auto" /></div>
+                <div className="p-4 text-center text-muted-foreground"><XIcon className="w-5 h-5 mx-auto" /></div>
               </div>
             ))}
           </div>
@@ -258,7 +288,13 @@ const ProductPage = () => {
         <div className="container">
           <h2 className="text-2xl font-serif font-bold text-center mb-10">Complete the Routine</h2>
           <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {crossSell.map(p => <ProductCard key={p.id} product={p} />)}
+            {crossSell.map(p => (
+              <ProductCard
+                key={p.id}
+                product={p}
+                cjData={getCJProductBySlug(cjProducts, p.slug)}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -276,6 +312,24 @@ const ProductPage = () => {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Modals */}
+      {showGallery && (
+        <ImageGalleryModal
+          images={gallery}
+          initialIndex={activeImage}
+          alt={product.name}
+          onClose={() => setShowGallery(false)}
+        />
+      )}
+
+      {showVideo && cjData?.videoUrl && (
+        <VideoModal
+          videoUrl={cjData.videoUrl}
+          title={product.name}
+          onClose={() => setShowVideo(false)}
+        />
       )}
     </>
   );
