@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { products } from '@/data/products';
 import ProductCard from '@/components/product/ProductCard';
+import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 
 type Filter = 'all' | 'dogs' | 'cats' | 'bestsellers' | 'bundles';
 type Sort = 'bestselling' | 'price-asc' | 'price-desc' | 'newest';
@@ -9,6 +10,7 @@ type Sort = 'bestselling' | 'price-asc' | 'price-desc' | 'newest';
 const CollectionsPage = () => {
   const [filter, setFilter] = useState<Filter>('all');
   const [sort, setSort] = useState<Sort>('bestselling');
+  const { cjProducts, isLoading } = useCJProducts();
 
   const filters: { key: Filter; label: string }[] = [
     { key: 'all', label: 'All' },
@@ -28,7 +30,7 @@ const CollectionsPage = () => {
   filtered = [...filtered].sort((a, b) => {
     if (sort === 'price-asc') return a.price - b.price;
     if (sort === 'price-desc') return b.price - a.price;
-    return b.reviewCount - a.reviewCount; // bestselling default
+    return b.reviewCount - a.reviewCount;
   });
 
   return (
@@ -39,7 +41,6 @@ const CollectionsPage = () => {
         <p className="text-muted-foreground max-w-lg mx-auto">Science-backed solutions for every pet parent. Vet-approved. Happiness guaranteed.</p>
       </motion.div>
 
-      {/* Filters & Sort */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-10">
         <div className="flex flex-wrap gap-2">
           {filters.map(f => (
@@ -67,7 +68,11 @@ const CollectionsPage = () => {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map(p => (
           <motion.div key={p.id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <ProductCard product={p} />
+            <ProductCard
+              product={p}
+              cjData={getCJProductBySlug(cjProducts, p.slug)}
+              isLoading={isLoading}
+            />
           </motion.div>
         ))}
       </div>
