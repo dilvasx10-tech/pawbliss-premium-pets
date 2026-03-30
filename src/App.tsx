@@ -21,7 +21,6 @@ const queryClient = new QueryClient();
 const StoreLayout = () => (
   <>
     <Header />
-    <CartDrawer />
     <main className="min-h-screen">
       <Outlet />
     </main>
@@ -36,6 +35,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <CartDrawer />
           <Routes>
             <Route path="/calm-kit" element={<CalmKitLanding />} />
             <Route path="/checkout-success" element={<CheckoutSuccess />} />
