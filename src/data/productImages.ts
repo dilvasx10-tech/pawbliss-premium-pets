@@ -1,4 +1,10 @@
-import calmLickMat from '@/assets/products/calm-lick-mat.jpg';
+import calmLickMat from '@/assets/lickmat-1.jpg';
+import calmLickMat2 from '@/assets/lickmat-2.jpg';
+import calmLickMat3 from '@/assets/lickmat-3.jpg';
+import calmLickMat4 from '@/assets/lickmat-4.jpg';
+import calmLickMat5 from '@/assets/lickmat-5.jpg';
+import calmLickMat6 from '@/assets/lickmat-6.jpg';
+import calmLickMat7 from '@/assets/lickmat-7.jpg';
 import pureFlowFountain from '@/assets/products/pure-flow-fountain.jpg';
 import pureFlowFountain2 from '@/assets/products/pure-flow-fountain-2.jpg';
 import pureFlowFountain3 from '@/assets/products/pure-flow-fountain-3.jpg';
@@ -23,6 +29,7 @@ export const productImages: Record<string, string> = {
 };
 
 export const productGallery: Record<string, string[]> = {
+  'calm-lick-mat': [calmLickMat, calmLickMat2, calmLickMat3, calmLickMat4, calmLickMat5, calmLickMat6, calmLickMat7],
   'pure-flow-cat-fountain': [pureFlowFountain, pureFlowFountain2, pureFlowFountain3, pureFlowFountain4, pureFlowFountain5],
   'shedaway-glove': [shedawayGlove, shedawayGlove2, shedawayGlove3, shedawayGlove4, shedawayGlove5],
 };

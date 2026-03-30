@@ -4,8 +4,13 @@ import CtaButton from './CtaButton';
 import CountdownTimer from './CountdownTimer';
 import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import { Skeleton } from '@/components/ui/skeleton';
-import heroFallback from '@/assets/hero-fallback.jpg';
-import lickMatFallback from '@/assets/lick-mat-fallback.jpg';
+import lickmat1 from '@/assets/lickmat-1.jpg';
+import lickmat2 from '@/assets/lickmat-2.jpg';
+import lickmat3 from '@/assets/lickmat-3.jpg';
+import lickmat4 from '@/assets/lickmat-4.jpg';
+import lickmat5 from '@/assets/lickmat-5.jpg';
+import lickmat6 from '@/assets/lickmat-6.jpg';
+import lickmat7 from '@/assets/lickmat-7.jpg';
 import glove1 from '@/assets/glove-1.jpg';
 import glove2 from '@/assets/glove-2.jpg';
 import glove3 from '@/assets/glove-3.jpg';
@@ -29,9 +34,9 @@ const HeroSection = () => {
   // Build hero images from CJ data or fallback
   const heroImages = lickMatCJ?.productImageSet?.length
     ? lickMatCJ.productImageSet
-    : [heroFallback];
+    : [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
 
-  const lickMatThumb = lickMatCJ?.productImageSet?.[0] || lickMatFallback;
+  const lickMatThumb = lickMatCJ?.productImageSet?.[0] || lickmat1;
   const gloveThumb = gloveCJ?.productImageSet?.[0] || glove1;
 
   const prevHero = () => setHeroIdx(i => (i > 0 ? i - 1 : heroImages.length - 1));

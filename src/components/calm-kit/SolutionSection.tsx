@@ -3,7 +3,13 @@ import { CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import CtaButton from './CtaButton';
 import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import { Skeleton } from '@/components/ui/skeleton';
-import lickMatFallback from '@/assets/lick-mat-fallback.jpg';
+import lickmat1 from '@/assets/lickmat-1.jpg';
+import lickmat2 from '@/assets/lickmat-2.jpg';
+import lickmat3 from '@/assets/lickmat-3.jpg';
+import lickmat4 from '@/assets/lickmat-4.jpg';
+import lickmat5 from '@/assets/lickmat-5.jpg';
+import lickmat6 from '@/assets/lickmat-6.jpg';
+import lickmat7 from '@/assets/lickmat-7.jpg';
 import glove1 from '@/assets/glove-1.jpg';
 import glove2 from '@/assets/glove-2.jpg';
 import glove3 from '@/assets/glove-3.jpg';
@@ -69,7 +75,7 @@ const SolutionSection = () => {
 
   const lickMatImages = lickMatCJ?.productImageSet?.length
     ? lickMatCJ.productImageSet
-    : [lickMatFallback];
+    : [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
 
   const gloveImages = gloveCJ?.productImageSet?.length
     ? gloveCJ.productImageSet
