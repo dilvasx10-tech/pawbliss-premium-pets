@@ -13,6 +13,7 @@ serve(async (req) => {
   }
 
   try {
+    const origin = req.headers.get("origin") || "https://pawbliss-premium-pets.lovable.app";
     const { items } = await req.json();
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
