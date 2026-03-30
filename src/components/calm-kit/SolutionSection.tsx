@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import CtaButton from './CtaButton';
-import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
-import { Skeleton } from '@/components/ui/skeleton';
 import lickmat1 from '@/assets/lickmat-1.jpg';
 import lickmat2 from '@/assets/lickmat-2.jpg';
 import lickmat3 from '@/assets/lickmat-3.jpg';
@@ -69,17 +67,8 @@ const ImageCarousel = ({ images, alt }: { images: string[]; alt: string }) => {
 };
 
 const SolutionSection = () => {
-  const { cjProducts, isLoading } = useCJProducts();
-  const lickMatCJ = getCJProductBySlug(cjProducts, 'calm-lick-mat');
-  const gloveCJ = getCJProductBySlug(cjProducts, 'shedaway-glove');
-
-  const lickMatImages = lickMatCJ?.productImageSet?.length
-    ? lickMatCJ.productImageSet
-    : [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
-
-  const gloveImages = gloveCJ?.productImageSet?.length
-    ? gloveCJ.productImageSet
-    : [glove1, glove2, glove3, glove4, glove5];
+  const lickMatImages = [lickmat1, lickmat2, lickmat3, lickmat4, lickmat5, lickmat6, lickmat7];
+  const gloveImages = [glove1, glove2, glove3, glove4, glove5];
 
   return (
     <section className="py-14 md:py-20" style={{ backgroundColor: '#fff' }}>
@@ -93,13 +82,8 @@ const SolutionSection = () => {
           </p>
         </div>
 
-        {/* Product 1 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
-          {isLoading ? (
-            <Skeleton className="w-full aspect-square rounded-2xl" />
-          ) : (
-            <ImageCarousel images={lickMatImages} alt="PawBliss Calm Lick Mat in use" />
-          )}
+          <ImageCarousel images={lickMatImages} alt="PawBliss Calm Lick Mat in use" />
           <div>
             <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-3" style={{ backgroundColor: '#C8714A', color: '#fff' }}>
               PRODUCT 1 OF 2
@@ -121,7 +105,6 @@ const SolutionSection = () => {
           </div>
         </div>
 
-        {/* Product 2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
           <div className="order-2 md:order-1">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-3" style={{ backgroundColor: '#C8714A', color: '#fff' }}>
@@ -142,16 +125,11 @@ const SolutionSection = () => {
               ))}
             </ul>
           </div>
-          {isLoading ? (
-            <Skeleton className="w-full aspect-square rounded-2xl order-1 md:order-2" />
-          ) : (
-            <div className="order-1 md:order-2">
-              <ImageCarousel images={gloveImages} alt="PawBliss ShedAway Deshedding Glove" />
-            </div>
-          )}
+          <div className="order-1 md:order-2">
+            <ImageCarousel images={gloveImages} alt="PawBliss ShedAway Deshedding Glove" />
+          </div>
         </div>
 
-        {/* Free Bonuses */}
         <div className="rounded-2xl p-8 md:p-12" style={{ backgroundColor: '#2D4A3E' }}>
           <div className="text-center mb-8">
             <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif', color: '#FAFAF7' }}>
