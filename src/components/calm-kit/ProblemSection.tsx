@@ -38,7 +38,7 @@ const ProblemSection = () => (
     <p className="mt-8 text-base italic" style={{ color: '#C8714A' }}>
       There's a better way — and it costs less than a single grooming appointment.
     </p>
-    <CtaButton label="GET THE CALM KIT — $44.99 🐾" className="max-w-md mx-auto mt-8" />
+    <CtaButton className="max-w-md mx-auto mt-8" />
   </section>
 );
 
