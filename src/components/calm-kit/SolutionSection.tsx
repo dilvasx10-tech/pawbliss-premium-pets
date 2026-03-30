@@ -3,6 +3,8 @@ import { CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import CtaButton from './CtaButton';
 import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import { Skeleton } from '@/components/ui/skeleton';
+import lickMatFallback from '@/assets/lick-mat-fallback.jpg';
+import gloveFallback from '@/assets/glove-fallback.jpg';
 
 const product1Bullets = [
   'Calms anxiety in under 60 seconds',
