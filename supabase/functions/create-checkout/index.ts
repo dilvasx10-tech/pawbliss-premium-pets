@@ -13,25 +13,32 @@ serve(async (req) => {
   }
 
   try {
-    const origin = req.headers.get("origin") || "https://pawbliss-premium-pets.lovable.app";
+    const origin = req.headers.get("origin")
+      || req.headers.get("referer")?.replace(/\/$/, "")
+      || "https://pawbliss-premium-pets.lovable.app";
+
     const { items } = await req.json();
 
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
       apiVersion: "2025-08-27.basil",
     });
 
-    // Build line items - support both bundle and individual products
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
     if (items?.length) {
-      // Dynamic cart items - create price_data for each
       for (const item of items) {
+        // Only include images that are valid absolute URLs
+        const images: string[] = [];
+        if (item.image && item.image.startsWith("http")) {
+          images.push(item.image);
+        }
+
         lineItems.push({
           price_data: {
             currency: "usd",
             product_data: {
               name: item.name,
-              ...(item.image ? { images: [item.image] } : {}),
+              ...(images.length > 0 ? { images } : {}),
             },
             unit_amount: Math.round(item.price * 100),
           },
@@ -39,12 +46,13 @@ serve(async (req) => {
         });
       }
     } else {
-      // Default: Calm Kit bundle at fixed price
       lineItems.push({
         price: "price_1TGZbbC2It0cAM7DBKAN9BQg",
         quantity: 1,
       });
     }
+
+    console.log("[create-checkout] origin:", origin, "lineItems:", lineItems.length);
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
@@ -61,6 +69,7 @@ serve(async (req) => {
       status: 200,
     });
   } catch (error) {
+    console.error("[create-checkout] Error:", error);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
