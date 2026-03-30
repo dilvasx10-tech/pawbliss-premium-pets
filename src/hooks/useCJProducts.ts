@@ -39,8 +39,6 @@ async function fetchCJProducts(): Promise<CJProduct[]> {
         error?: string;
       }> = data.products ?? data;
 
-      console.log('[CJ API] Raw response products:', JSON.stringify(raw.map(p => ({ slug: p.slug, name: p.productNameEn, imageCount: p.productImages?.length })), null, 2));
-
       const mapped: CJProduct[] = raw
         .filter(p => !p.error && p.productImages?.length)
         .map(p => ({
@@ -51,7 +49,6 @@ async function fetchCJProducts(): Promise<CJProduct[]> {
           videoUrl: p.videoUrl ?? null,
         }));
 
-      console.log('[CJ API] Mapped products:', mapped.map(p => ({ slug: p.slug, name: p.productNameEn, images: p.productImageSet.length })));
       cachedData = mapped;
       return mapped;
     })
