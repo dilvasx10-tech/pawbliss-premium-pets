@@ -6,6 +6,15 @@ import { toast } from '@/hooks/use-toast';
 
 const CartDrawer = () => {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, subtotal, amountToFreeShipping, freeShippingThreshold } = useCart();
+  const { checkout, isLoading: checkoutLoading } = useCheckout();
+
+  const handleCheckout = async () => {
+    try {
+      await checkout();
+    } catch {
+      toast({ title: 'Checkout failed', description: 'Please try again.', variant: 'destructive' });
+    }
+  };
 
   if (!isOpen) return null;
 
