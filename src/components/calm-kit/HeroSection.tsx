@@ -4,6 +4,9 @@ import CtaButton from './CtaButton';
 import CountdownTimer from './CountdownTimer';
 import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import { Skeleton } from '@/components/ui/skeleton';
+import heroFallback from '@/assets/hero-fallback.jpg';
+import lickMatFallback from '@/assets/lick-mat-fallback.jpg';
+import gloveFallback from '@/assets/glove-fallback.jpg';
 
 const valueItems = [
   { icon: <Package className="w-4 h-4" style={{ color: '#2D4A3E' }} />, label: 'PawBliss 4-Quadrant Calm Lick Mat', price: '$24.99' },
@@ -22,10 +25,10 @@ const HeroSection = () => {
   // Build hero images from CJ data or fallback
   const heroImages = lickMatCJ?.productImageSet?.length
     ? lickMatCJ.productImageSet
-    : ['https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800'];
+    : [heroFallback];
 
-  const lickMatThumb = lickMatCJ?.productImageSet?.[0] || 'https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=200';
-  const gloveThumb = gloveCJ?.productImageSet?.[0] || 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=200';
+  const lickMatThumb = lickMatCJ?.productImageSet?.[0] || lickMatFallback;
+  const gloveThumb = gloveCJ?.productImageSet?.[0] || gloveFallback;
 
   const prevHero = () => setHeroIdx(i => (i > 0 ? i - 1 : heroImages.length - 1));
   const nextHero = () => setHeroIdx(i => (i < heroImages.length - 1 ? i + 1 : 0));

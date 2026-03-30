@@ -3,6 +3,8 @@ import { CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import CtaButton from './CtaButton';
 import { useCJProducts, getCJProductBySlug } from '@/hooks/useCJProducts';
 import { Skeleton } from '@/components/ui/skeleton';
+import lickMatFallback from '@/assets/lick-mat-fallback.jpg';
+import gloveFallback from '@/assets/glove-fallback.jpg';
 
 const product1Bullets = [
   'Calms anxiety in under 60 seconds',
@@ -63,11 +65,11 @@ const SolutionSection = () => {
 
   const lickMatImages = lickMatCJ?.productImageSet?.length
     ? lickMatCJ.productImageSet
-    : ['https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=700'];
+    : [lickMatFallback];
 
   const gloveImages = gloveCJ?.productImageSet?.length
     ? gloveCJ.productImageSet
-    : ['https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=700'];
+    : [gloveFallback];
 
   return (
     <section className="py-14 md:py-20" style={{ backgroundColor: '#fff' }}>
