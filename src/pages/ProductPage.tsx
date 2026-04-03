@@ -26,8 +26,7 @@ const ProductPage = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   // Build gallery from CJ data or fallback to static
-  const staticGallery = getProductGallery(slug || '');
-  const gallery = cjData?.productImageSet?.length ? cjData.productImageSet : staticGallery;
+  const gallery = getProductGallery(slug || '');
 
   useEffect(() => {
     if (product?.variant) setSelectedVariant(product.variant.options[0]);
