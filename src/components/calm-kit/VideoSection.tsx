@@ -24,7 +24,7 @@ const VideoSection = () => {
                 />
               </div>
               <p className="text-xs font-medium" style={{ color: '#555' }}>
-                {i === 0 ? '🛁 Demo 1 — Bath time calm' : '🐕 Demo 2 — Lick Mat in action'}
+                {i === 0 ? '🧤 Demo 1 — Grooming Glove in action' : '🐕 Demo 2 — Lick Mat in action'}
               </p>
             </div>
           ))}
