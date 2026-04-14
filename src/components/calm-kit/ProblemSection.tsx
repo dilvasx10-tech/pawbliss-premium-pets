@@ -1,5 +1,3 @@
-import CtaButton from './CtaButton';
-
 const problems = [
   {
     emoji: '😰',
@@ -19,26 +17,25 @@ const problems = [
 ];
 
 const ProblemSection = () => (
-  <section className="max-w-5xl mx-auto px-4 py-14 md:py-20 text-center" style={{ backgroundColor: '#FAFAF7' }}>
-    <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+  <section className="max-w-5xl mx-auto px-4 py-10 md:py-16 text-center" style={{ backgroundColor: '#FAFAF7' }}>
+    <h2 className="text-2xl md:text-4xl font-bold mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
       Sound Familiar?
     </h2>
-    <p className="text-sm mb-10" style={{ color: '#888' }}>
-      You're not alone — 67 million dog owners deal with these exact problems every day
+    <p className="text-sm mb-6 md:mb-10" style={{ color: '#888' }}>
+      67 million dog owners deal with these exact problems every day
     </p>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
       {problems.map(p => (
-        <div key={p.title} className="rounded-2xl p-6 text-left shadow-sm" style={{ backgroundColor: '#fff', border: '1px solid #e8e4dc' }}>
-          <span className="text-3xl mb-3 block">{p.emoji}</span>
-          <h3 className="font-bold text-base mb-2">{p.title}</h3>
+        <div key={p.title} className="rounded-2xl p-5 md:p-6 text-left shadow-sm" style={{ backgroundColor: '#fff', border: '1px solid #e8e4dc' }}>
+          <span className="text-2xl md:text-3xl mb-2 block">{p.emoji}</span>
+          <h3 className="font-bold text-base mb-1">{p.title}</h3>
           <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{p.desc}</p>
         </div>
       ))}
     </div>
-    <p className="mt-8 text-base italic" style={{ color: '#C8714A' }}>
+    <p className="mt-6 text-sm md:text-base italic" style={{ color: '#C8714A' }}>
       There's a better way — and it costs less than a single grooming appointment.
     </p>
-    <CtaButton className="max-w-md mx-auto mt-8" />
   </section>
 );
 
