@@ -12,10 +12,10 @@ const FinalCTA = () => (
   <section className="py-14 md:py-20 text-center" style={{ backgroundColor: '#2D4A3E' }}>
     <div className="max-w-2xl mx-auto px-4">
       <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ fontFamily: 'Playfair Display, serif', color: '#FAFAF7' }}>
-        Your Dog Deserves to Feel Calm
+        Your Dog Deserves Better Bath Days
       </h2>
       <p className="text-base mb-8" style={{ color: '#FAFAF7AA' }}>
-        Join 10,000+ pet parents who made bath time something their dog actually looks forward to
+        Join 10,000+ pet parents who eliminated bath time stress and took back their fur-covered couches
       </p>
 
       <div className="space-y-2 mb-6 text-left max-w-sm mx-auto">
