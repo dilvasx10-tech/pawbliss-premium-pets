@@ -1,11 +1,7 @@
 import StickyTopBar from '@/components/calm-kit/StickyTopBar';
 import HeroSection from '@/components/calm-kit/HeroSection';
-import TrustBar from '@/components/calm-kit/TrustBar';
-import TikTokSection from '@/components/calm-kit/TikTokSection';
 import ProblemSection from '@/components/calm-kit/ProblemSection';
 import SolutionSection from '@/components/calm-kit/SolutionSection';
-import VideoSection from '@/components/calm-kit/VideoSection';
-import HowItWorks from '@/components/calm-kit/HowItWorks';
 import SocialProof from '@/components/calm-kit/SocialProof';
 import Guarantee from '@/components/calm-kit/Guarantee';
 import FAQSection from '@/components/calm-kit/FAQSection';
@@ -16,12 +12,8 @@ const CalmKitLanding = () => (
   <div style={{ backgroundColor: '#FAFAF7', color: '#1A1A1A', fontFamily: 'Inter, sans-serif' }} className="min-h-screen">
     <StickyTopBar />
     <HeroSection />
-    <TrustBar />
-    <TikTokSection />
     <ProblemSection />
     <SolutionSection />
-    <VideoSection />
-    <HowItWorks />
     <SocialProof />
     <Guarantee />
     <FAQSection />

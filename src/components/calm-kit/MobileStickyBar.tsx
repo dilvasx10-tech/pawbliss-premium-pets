@@ -33,18 +33,17 @@ const MobileStickyBar = () => {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden flex items-center justify-between px-4" style={{ backgroundColor: '#2D4A3E', height: 64 }}>
-        <div className="text-xs font-medium" style={{ color: '#FAFAF7' }}>
-          <span className="font-bold">$44.99</span>
-          <span className="block text-[10px]" style={{ color: '#FAFAF7AA' }}>Free Shipping + $45 Bonuses</span>
-        </div>
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden px-4 pb-3 pt-2" style={{ backgroundColor: '#2D4A3E' }}>
         <button
           onClick={() => setShowModal(true)}
-          className="px-5 py-2.5 rounded-lg text-sm font-bold"
+          className="w-full py-3.5 rounded-xl text-base font-bold"
           style={{ backgroundColor: '#C8714A', color: '#fff' }}
         >
-          GET THE KIT 🐾
+          YES — SEND ME THE CALM KIT 🐾
         </button>
+        <p className="text-center text-[10px] mt-1 font-medium" style={{ color: '#FAFAF7AA' }}>
+          🔥 Only 47 kits left · $44.99 · Free Shipping
+        </p>
       </div>
       <DogInfoModal open={showModal} onClose={() => setShowModal(false)} onSubmit={handleConfirm} />
     </>
