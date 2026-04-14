@@ -84,7 +84,7 @@ const HeroSection = () => {
             Stop Bath Time Drama. Forever.
           </h1>
           <p className="text-sm md:text-lg leading-relaxed mb-3 md:mb-5" style={{ color: '#444' }}>
-            The 2-product system 10,000+ dog parents use to keep their pets calm during baths, grooming, thunderstorms and vet visits — plus $45 in free digital bonuses
+            The 2-product system 10,000+ dog parents use to end bath time stress and conquer shedding for good — plus $45 in free digital bonuses
           </p>
 
           {/* Star rating + review count + trust signals */}
