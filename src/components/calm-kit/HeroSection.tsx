@@ -119,7 +119,7 @@ const HeroSection = () => {
           <CtaButton className="mb-4" />
 
           {/* What you get box — below fold on mobile, that's ok */}
-          <div className="rounded-xl overflow-hidden border hidden md:block" style={{ borderColor: '#2D4A3E' }}>
+          <div className="rounded-xl overflow-hidden border" style={{ borderColor: '#2D4A3E' }}>
             <div className="px-5 py-3" style={{ backgroundColor: '#2D4A3E' }}>
               <p className="font-semibold text-xs tracking-widest uppercase" style={{ color: '#FAFAF7' }}>
                 📦 WHAT YOU GET TODAY
